@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Deployment Tutorial 1</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+  <!-- Link to the stylesheet  -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body style="background: #000;">
+  <div class="input-form">
+    <h1>Heart Failure</h1>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+
+      <input type="text" name="Age" placeholder="Age" required="required" />
+      <div class="radio-group">
+      <h5>Sex</h5>
+      <input type="radio" name="Sex" value="Female">
+      <label for="Female">Female</label>
+      <input type="radio" name="Sex" value="Male">
+      <label for="option2">Male</label>
+      </div>
+      <div class="radio-group">
+        <h5>Chest Pain</h5>
+        <input type="radio" name="chest_pain" id="asv" value="ASV">
+        <label for="asv">Atypical chest pain</label>
+        <input type="radio" name="chest_pain" id="nap" value="NAP">
+        <label for="nap">Non-anginal pain</label>
+        <input type="radio" name="chest_pain" id="ata" value="ATA">
+        <label for="ata">Angina-like pain</label>
+        <input type="radio" name="chest_pain" id="ta" value="TA">
+        <label for="ta">Typical angina</label>
+        </div>
+
+     
+        <div class="radio-group">
+        <h5>Resting ECG</h5>
+        <input type="radio" name="resting_ecg" id="normal" value="Normal">
+        <label for="normal">Normal</label>
+        <input type="radio" name="resting_ecg" id="lvh" value="LVH">
+        <label for="lvh">Left ventricular hypertrophy</label>
+        <input type="radio" name="resting_ecg" id="st" value="ST">
+        <label for="st">ST-segment changes</label>
+        </div>
+
+        <div class="radio-group">
+        <h5>Exercise Angina</h5>
+        <input type="radio" name="exercise_angina" id="yes" value="Yes">
+        <label for="yes">Yes</label>
+        <input type="radio" name="exercise_angina" id="no" value="No">
+        <label for="no">No</label>
+        </div>
+   
+        <div class="radio-group">
+        <h5>St_Slope</h5>
+        <input type="radio" name="st_slope" id="flat" value="Flat">
+        <label for="flat">Flat</label>
+        <input type="radio" name="st_slope" id="up" value="Up">
+        <label for="up">Up</label>
+        <input type="radio" name="st_slope" id="down" value="Down">
+        <label for="down">Down</label>
+        </div>
+      <input type="text" name="Resting Blood pressure" placeholder="Resting Blood pressure" required="required" />
+      <input type="text" name="Cholesterol" placeholder="Cholesterol" required="required" />
+      <input type="text" name="Fasting BS" placeholder="Fasting BS" required="required" />
+      <input type="text" name="Maximum heart rate" placeholder="Maximum heart rate" required="required" />
+      <input type="text" name="Old peak" placeholder="Old peak" required="required" />
+      
+
+
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <br>
+    <br>
+    {{ prediction_text }}
+
+  </div>
+</body>
+
+</html>
