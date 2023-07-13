@@ -86,13 +86,16 @@ class PredictDeath(Resource):
         final_features =[np.array(input_list)]
         
         prediction = modelHeart.predict(final_features)
+        probability = modelHeart.predict_proba(final_features)
+        proba = round(sorted(probability[0])[1], 2)
         output = round(prediction[0], 2)
         if output == 0:
-            output = "The patient might not die"
+            output = "There is a" + str(proba) + "the patient will die of Heart failure"
         else:
-            output =  "The patient is likely to die"
+            output =  "There is a" + str(proba) + "the patient will die not of Heart failure"
         return output
-    except:
+    except Exception as e:
+        print(e)
         return "error", 500
 
 
